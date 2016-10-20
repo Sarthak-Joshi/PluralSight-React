@@ -24,7 +24,7 @@ class CoursesPage extends Component {
     }
 
     courseRow(course, index) {
-        return <div key="{index}">{course.title}</div>;
+        return <div key={index}><h4>{course.title}</h4></div>;
     }
 
     onClickSave() {
@@ -44,7 +44,8 @@ class CoursesPage extends Component {
                     />
                 <input type="submit"
                     className="btn btn-sm btn-default"
-                    onClick={this.onClickSave} />
+                    onClick={this.onClickSave}
+                    />
             </div>
         );
     }
