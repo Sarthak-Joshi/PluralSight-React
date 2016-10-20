@@ -28,7 +28,8 @@ class CoursesPage extends Component {
     }
 
     onClickSave() {
-        this.props.dispatch(courseActions.createCourse(this.state.course));
+        this.props.createCourse(this.state.course);
+        // this.props.dispatch(courseActions.createCourse(this.state.course));
     }
 
     render() {
@@ -54,8 +55,9 @@ class CoursesPage extends Component {
 // Proptype validation
 
 CoursesPage.propTypes = {
-    dispatch: PropTypes.func.isRequired,
+    // dispatch: PropTypes.func.isRequired,
     courses: PropTypes.array.isRequired,
+    createCourse: PropTypes.func.isRequired,
 };
 
 // state in this function is Redux store state
@@ -73,5 +75,16 @@ function mapStateToProps(state, ownProps) {
     
 }*/
 
-export default connect(mapStateToProps)(CoursesPage);
+// Arrow function 
+// Paranthesis can be omitted for single argument
+function mapDispatchToProps(dispatch) {
+    return {
+        createCourse: course => dispatch(courseActions.createCourse(course))
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CoursesPage);
 //  
+
+/*Once mapDispatchToProps to explicity mentioned connect removes dispatch from props hence it is no longer required 
+This might give warming about PropValidation*/
