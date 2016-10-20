@@ -1,5 +1,7 @@
+/* ------------------------ This is a container Component ------------------- */
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import * as courseActions from '../../actions/courseActions';
 
 
@@ -28,7 +30,7 @@ class CoursesPage extends Component {
     }
 
     onClickSave() {
-        this.props.createCourse(this.state.course);
+        this.props.actions.createCourse(this.state.course);
         // this.props.dispatch(courseActions.createCourse(this.state.course));
     }
 
@@ -55,9 +57,9 @@ class CoursesPage extends Component {
 // Proptype validation
 
 CoursesPage.propTypes = {
-    // dispatch: PropTypes.func.isRequired,
+    actions : PropTypes.object.isRequired,
     courses: PropTypes.array.isRequired,
-    createCourse: PropTypes.func.isRequired,
+    // createCourse : PropTypes.func.isRequired,
 };
 
 // state in this function is Redux store state
@@ -79,7 +81,9 @@ function mapStateToProps(state, ownProps) {
 // Paranthesis can be omitted for single argument
 function mapDispatchToProps(dispatch) {
     return {
-        createCourse: course => dispatch(courseActions.createCourse(course))
+        // courseActions.createCourse can also be individually binded
+        actions: bindActionCreators(courseActions, dispatch)
+        // createCourse: course => dispatch(courseActions.createCourse(course))
     };
 }
 
@@ -88,3 +92,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(CoursesPage);
 
 /*Once mapDispatchToProps to explicity mentioned connect removes dispatch from props hence it is no longer required 
 This might give warming about PropValidation*/
+
+// mapStateToProps and mapDispatchToProps are not required names
+// those can be named anyting
