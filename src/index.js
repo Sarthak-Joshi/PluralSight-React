@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import 'babel-polyfill';
 import React from 'react';
 import { render } from 'react-dom';
@@ -11,8 +12,19 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 const store = configureStore(); // Can pass initialState
 
-render(
-    <Provider store={store}>
-        <Router history={browserHistory} routes={routes} />
-    </Provider>, document.getElementById('app')
-);
+/*
+    wrapping up inside document.ready ()
+    to avoid "register component target container is not a dom element" in mocha tests
+    http://stackoverflow.com/a/27693136
+*/
+
+$(function () {
+    render(
+        <Provider store={store}>
+            <Router history={browserHistory} routes={routes} />
+        </Provider>, document.getElementById('app')
+    );
+    // console.log( "ready!" );
+});
+
+
