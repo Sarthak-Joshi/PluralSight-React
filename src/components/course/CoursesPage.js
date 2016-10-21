@@ -4,14 +4,20 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as courseActions from '../../actions/courseActions';
 import CourseList from './CourseList';
-
+import { browserHistory } from 'react-router';
 class CoursesPage extends Component {
     constructor(props, context) {
         super(props, context);
+
+        this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this);
     }
 
     courseRow(course, index) {
         return <div key={index}><h4>{course.title}</h4></div>;
+    }
+
+    redirectToAddCoursePage() {
+        browserHistory.push('/course');
     }
 
     render() {
@@ -19,7 +25,7 @@ class CoursesPage extends Component {
         return (
             <div>
                 <h1>Course</h1>
-                {this.props.courses.map(this.courseRow)}
+                <input type="submit" value="Add Course" className="btn btn-primary" onClick={this.redirectToAddCoursePage} />
                 <CourseList courses={courses} />
             </div>
         );
@@ -99,4 +105,6 @@ This might give warming about PropValidation*/
     // onClick={this.onClickSave}
     this.onClickSave = this.onClickSave.bind(this);
     this.onTitleChange = this.onTitleChange.bind(this);
+
+    {this.props.courses.map(this.courseRow)}
 */

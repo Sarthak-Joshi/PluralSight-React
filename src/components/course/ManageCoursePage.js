@@ -24,6 +24,11 @@ class ManageCoursePage extends React.Component {
         return this.setState({ course: course });
     }
 
+    saveCourse(event) {
+        event.preventDefault();
+        this.props.actions.saveCourse(this.state.course);
+    }
+
     render() {
         return (
             <CourseForm
@@ -39,6 +44,7 @@ class ManageCoursePage extends React.Component {
 ManageCoursePage.propTypes = {
     course: PropTypes.object.isRequired,
     authors: PropTypes.array.isRequired,
+    actions: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
