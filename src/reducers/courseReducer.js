@@ -5,6 +5,8 @@ export default function courseReducer(state = [], action) {
             // ...state = new instance of array
             // read about spread operator 
             return [...state, Object.assign({}, action.course)];
+        case types.LOAD_COURSES_SUCCESS:
+            return action.courses;
         /*
             DONT DO THIS
             State is immutable
