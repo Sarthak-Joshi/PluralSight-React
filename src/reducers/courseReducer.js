@@ -1,5 +1,7 @@
 import * as types from '../actions/actionTypes';
-export default function courseReducer(state = [], action) {
+import initialState from './initialState';
+// Concept : Every reducer have slice of state
+export default function courseReducer(state = initialState.courses, action) {
     switch (action.type) {
         case types.CREATE_COURSE:
             // ...state = new instance of array
@@ -18,3 +20,5 @@ export default function courseReducer(state = [], action) {
             return state;
     }
 }
+
+/* Picture of store can be easily visualized with different reducers grabbing slice of state */

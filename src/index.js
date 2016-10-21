@@ -7,6 +7,7 @@ import routes from './routes';
 import configureStore from './store/configureStore';
 import { Provider } from 'react-redux';
 import { loadCourses } from './actions/courseActions';
+import { loadAuthors } from './actions/authorActions';
 
 // import {moduleName} from 'module'; => This is named import
 /* Webpack can install styles too..!!*/
@@ -16,6 +17,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 const store = configureStore(); // Can pass initialState
 store.dispatch(loadCourses());
+store.dispatch(loadAuthors());
 
 /*
     wrapping up inside document.ready ()
